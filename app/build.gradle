@@ -1,0 +1,58 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.burlaka.vmpusher.sample"
+        minSdkVersion 19
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    sourceSets {
+        main {
+            java {
+                srcDir "${buildDir.absolutePath}/generated/source/kaptKotlin/"
+            }
+        }
+    }
+    dataBinding { enabled = true }
+}
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "androidx.appcompat:appcompat:$googleApcompat"
+    implementation "androidx.legacy:legacy-support-v4:$googleLegacySupport"
+    implementation "com.google.android.material:material:$googleMaterialComponents"
+
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+}
+
+//vmpusher
+dependencies {
+    implementation project(':vmpusher')
+    compileOnly project(path:':vmpusherannotation')
+    kapt project(':vmpusherprocessor')
+}
+
+//ArchComponents
+dependencies {
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle"
+    kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    kapt "androidx.room:room-compiler:$room_compiler_version"
+}

@@ -1,0 +1,53 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion project.ext.minSdkVersion
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            debuggable false
+//            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            debuggable true
+//            signingConfig signingConfigs.release
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.2-alpha02'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0-alpha02'
+}
+
+//ArchComponents
+dependencies {
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$lifecycle"
+
+}
