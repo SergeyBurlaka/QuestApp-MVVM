@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
  *  Upgrade you ViewModel to Presenter. Revolution comes.
  *
  *  How does Google ViewModel and LiveData upgrade?
- *  Hm, sometime I want to call method from view. Because it is very useful! To use LiveData you need to subscribe the data - activity must to implement observer callback.
+ *  Hm, sometime I want to call method from view. Because it is very useful! For navigation eg.
+ *
+ *  To use LiveData you need to subscribe the data - activity must to implement observer callback.
  *  You can simple add Activity context to ViewModel. But i doesn't think it is good idea!
  *  You can use weak reference but it isn't the best idea!
  *
@@ -20,7 +22,9 @@ import androidx.lifecycle.ViewModel
  *  So, as early You can subscribe to ViewModel LiveData from Activity,
  *  but now You can simply calling methods from ViewModel to Activity pushing You task via VmTaskPusher,
  *  like ViewModel have become the Presenter.
+ *
  *  You know, I think it is little crazy but to match usefully in some cases.
+ *  For navigation eg. //todo describe sample with navigation
  */
 abstract class BasePresenterViewModel :
     ViewModel(),
