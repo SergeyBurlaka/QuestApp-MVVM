@@ -7,7 +7,7 @@ import androidx.fragment.app.Fragment
 /**
  * Used as a wrapper for data that is exposed via a LiveData that represents an event.
  */
-open class NavigateEvent<out T>(
+open class PushingTask<out T>(
     private val content: T
     , val massage: String? = null
 ) {
@@ -33,16 +33,16 @@ open class NavigateEvent<out T>(
     fun peekContent(): T = content
 }
 
-fun <T> NavigateEvent<T>.getCash() =
-    NavigateEvent(this.peekContent())
+fun <T> PushingTask<T>.getCash() =
+    PushingTask(this.peekContent())
 
-fun <T> Fragment.getSingleResult(event: NavigateEvent<T>?): T? {
+fun <T> Fragment.getSingleResult(event: PushingTask<T>?): T? {
     return if (event != null && event.hasBeenHandled.not()) {
         event.getContentIfNotHandled()
     } else null
 }
 
-fun <T> AppCompatActivity.getSingleResult(event: NavigateEvent<T>?): T? {
+fun <T> AppCompatActivity.getSingleResult(event: PushingTask<T>?): T? {
     return if (event != null && event.hasBeenHandled.not()) {
         event.getContentIfNotHandled()
     } else null

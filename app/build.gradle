@@ -42,7 +42,7 @@ dependencies {
 
 //vmpusher
 dependencies {
-    implementation project(':vmpusher')
+    implementation project(':vmtaskpusher')
     compileOnly project(path: ':vmpusherannotation')
     kapt project(':vmpusherprocessor')
 }

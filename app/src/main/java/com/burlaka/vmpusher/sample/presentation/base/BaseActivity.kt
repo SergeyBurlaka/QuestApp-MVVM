@@ -8,10 +8,9 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.*
 import com.burlaka.utils.ext.hideKeyboardExt
-import com.burlaka.utils.ext.log_d
 import com.burlaka.utils.ext.showKeyboardExt
 import com.burlaka.utils.ext.snackAlert
-import com.burlaka.vmpusher.INavigate
+import com.burlaka.vmpusher.TaskExecutable
 import com.burlaka.vmpusher.BasePushViewModel
 
 
@@ -19,7 +18,7 @@ abstract class BaseActivity<T : ViewDataBinding> :
     AppCompatActivity(),
     LifecycleObserver,
     FragmentHost,
-    INavigate {
+    TaskExecutable {
 
     /**
      * Performing dependency injection and data binding
@@ -111,24 +110,4 @@ abstract class BaseActivity<T : ViewDataBinding> :
 
     protected val viewModelRegistration = ArrayList<BasePushViewModel>()
 
-    init {
-        lifecycle.addObserver(object : LifecycleObserver {
-            @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
-            fun create() {
-
-                viewModelRegistration.forEach { viewModel ->
-                    log_d(" activity:on create $viewModel")
-
-                    viewModel.create()
-                }
-            }
-
-            @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-            fun destroyView() {
-                viewModelRegistration.forEach { viewModel ->
-                    viewModel.detachView()
-                }
-            }
-        })
-    }
 }

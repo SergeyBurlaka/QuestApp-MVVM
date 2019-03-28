@@ -1,8 +1,6 @@
 package com.burlaka.vmpusher.sample.presentation
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.burlaka.utils.ext.setContentFragment
 import com.burlaka.vmpusher.sample.BR
@@ -11,11 +9,12 @@ import com.burlaka.vmpusher.sample.databinding.MainActivityBinding
 import com.burlaka.vmpusher.sample.presentation.base.BaseActivity
 import com.burlaka.vmpusher.sample.viewmodel.MainViewModel
 import com.burlaka.vmpusher.sample.viewmodel.MyViewModelFactory
-import com.jellyworkz.processor.Navigator.startActionViaNavigator
+import com.jellyworkz.processor.MainView.performTaskForMainView
 
 
 class MainActivity : BaseActivity<MainActivityBinding>(),
-    MainViewModel.Companion.Navigator {
+    MainViewModel.Companion.MainView {
+
 
     override fun layoutId(): Int = R.layout.main_activity
     private lateinit var mMainViewModel: MainViewModel
@@ -24,41 +23,39 @@ class MainActivity : BaseActivity<MainActivityBinding>(),
         super.onCreate(savedInstanceState)
         mBinding = getViewDataBinding()
 
-        this@MainActivity receiveMessagesFrom mMainViewModel
-
-        this@MainActivity receivePushesFrom mMainViewModel
+        this@MainActivity receiveTaskFrom mMainViewModel
     }
 
-    override fun getNavigate() = { id: Int ->
-        startActionViaNavigator(listenerId = this, actionId = id)
+    override val vmPushExcutable = { id: Int ->
+        performTaskForMainView(listenerId = this, actionId = id)
     }
 
     override fun showSecureScreen() {
-        setContentFragment(containerViewId = contentId) {
+        setContentFragment(contentId, true) {
             SecureFragment.newInstance()
         }
+    }
+
+    override fun showProgressBar() {
+        //
+    }
+
+    override fun upgradeToolbar() {
+        //
+    }
+
+    override fun changeColor() {
+        //
+    }
+
+    override fun showClock() {
+        //
     }
 
     override fun getBaseViewModel() =
         ViewModelProviders.of(this, MyViewModelFactory(application))[MainViewModel::class.java].apply {
             mMainViewModel = this
         }
-
-    private infix fun AppCompatActivity.receiveMessagesFrom(viewModel: MainViewModel): MainViewModel {
-        viewModel.messages.observe(this@MainActivity, Observer { singleEvent ->
-            singleEvent.getContentIfNotHandled()?.let {
-                when (it.isFailed) {
-                    true -> {
-                        showFailedMess(it.message)
-                    }
-                    else -> {
-                        showMessage(it.message)
-                    }
-                }
-            }
-        })
-        return viewModel
-    }
 
     override fun bindingVmVariable(): Int = BR.viewModel
     private lateinit var mBinding: MainActivityBinding

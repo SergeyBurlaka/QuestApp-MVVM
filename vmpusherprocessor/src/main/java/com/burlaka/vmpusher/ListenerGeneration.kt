@@ -71,7 +71,7 @@ class ListenerGeneration : AbstractProcessor() {
             //build generating method signature
             val bindFuncBuilder =
 
-                FunSpec.builder(name = "startActionVia$listenerLastName")
+                FunSpec.builder(name = "performTaskFor$listenerLastName")
                     .addModifiers(KModifier.PUBLIC)
                     .addParameter(
                         name = LISTENER,
@@ -157,7 +157,7 @@ class ListenerGeneration : AbstractProcessor() {
         )
 
         FunSpec
-            .builder(name = "${annotatedMethod.simpleName}$listenerLastName")
+            .builder(name = "${annotatedMethod.simpleName}For$listenerLastName")
             .addModifiers(KModifier.PUBLIC)
             .returns(Int::class)
             .addCode(

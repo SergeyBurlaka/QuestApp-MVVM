@@ -3,102 +3,102 @@ package com.burlaka.vmpusher
 import android.util.Log
 
 
-val testNavigator: NavigateVM.Companion.BaseNavigator
-    get() = NavigateVM.Companion.BaseNavigator()
+val testPusher: BasePusher
+    get() = BasePusher()
 
 const val screen_1 = 1
 const val screen_2 = 2
 const val screen_3 = 3
 
-fun NavigateVM.Companion.BaseNavigator.testNavigateOneScreen() {
+fun BasePusher.testNavigateOneScreen() {
     "testNavigateOneScreen".divide()
 
-    testNavigator.apply {
+    testPusher.apply {
 
-        navigateTo(screen_1)
+        pushTaskById(screen_1)
         cache(screen_1)
 
-        (vector.value!!.peekContent() == screen_1) assert "Navigate to screen 1"
+        (taskLiveData.value!!.peekContent() == screen_1) assert "Navigate to screen 1"
         (getCash() == null) assert "no screens on stack"
 
         onBack().not() assert "back return false"
     }
 }
 
-fun NavigateVM.Companion.BaseNavigator.testNavigateCashTwoScreens() {
+fun BasePusher.testNavigateCashTwoScreens() {
     "testNavigateCashTwoScreens".divide()
 
-    testNavigator.apply {
+    testPusher.apply {
 
-        navigateTo(screen_1)
+        pushTaskById(screen_1)
         cache(screen_1)
 
-        navigateTo(screen_2)
+        pushTaskById(screen_2)
         cache(screen_2)
 
-        (vector.value!!.peekContent() == screen_2) assert "Current navigate is screen 2"
+        (taskLiveData.value!!.peekContent() == screen_2) assert "Current navigate is screen 2"
         (getCash()!!.peekContent() == screen_1) assert "screen 1 available from cash"
 
     }
 }
 
-fun NavigateVM.Companion.BaseNavigator.tesNavigateCashOnBackTwoScreens() {
+fun BasePusher.tesNavigateCashOnBackTwoScreens() {
     "tesNavigateCashOnBackTwoScreens".divide()
 
-    testNavigator.apply {
+    testPusher.apply {
 
-        navigateTo(screen_1)
+        pushTaskById(screen_1)
         cache(screen_1)
 
-        navigateTo(screen_2)
+        pushTaskById(screen_2)
         cache(screen_2)
 
         onBack() assert "back return success"
 
-        (vector.value!!.peekContent() == screen_1) assert "App navigate to previous 1 screen"
+        (taskLiveData.value!!.peekContent() == screen_1) assert "App navigate to previous 1 screen"
 
         (getCash() == null) assert "no screens on stack"
 
     }
 }
 
-fun NavigateVM.Companion.BaseNavigator.tesNavigateCashAfterRestoreFromCash() {
+fun BasePusher.tesNavigateCashAfterRestoreFromCash() {
     "tesNavigateCashAfterRestoreFromCash".divide()
 
-    testNavigator.apply {
+    testPusher.apply {
 
-        navigateTo(screen_1)
+        pushTaskById(screen_1)
         cache(screen_1)
 
-        vector.value!!.getContentIfNotHandled()
+        taskLiveData.value!!.getContentIfNotHandled()
 
         restoreFromCash(screen_2)
 
-        navigateTo(screen_2)
+        pushTaskById(screen_2)
         cache(screen_2)
 
         onBack() assert "back return success"
 
-        (vector.value!!.peekContent() == screen_1) assert "App navigate to previous 1 screen"
+        (taskLiveData.value!!.peekContent() == screen_1) assert "App navigate to previous 1 screen"
 
         (getCash() == null) assert "no screens on stack"
 
     }
 }
 
-fun NavigateVM.Companion.BaseNavigator.tesNavigateCashAfterRestoreFromCash_2() {
+fun BasePusher.tesNavigateCashAfterRestoreFromCash_2() {
     "tesNavigateCashAfterRestoreFromCash_2".divide()
 
-    testNavigator.apply {
+    testPusher.apply {
 
         restoreFromCash(screen_2)
 
-        navigateTo(screen_3)
+        pushTaskById(screen_3)
         cache(screen_3)
 
         onBack() assert "back return success"
 
-        (vector.value!!.peekContent() == screen_2) assert "App navigate to previous 2 screen"
+        (taskLiveData.value!!.peekContent() == screen_2) assert "App navigate to previous 2 screen"
 
         (getCash() == null) assert "no screens on stack"
 

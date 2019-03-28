@@ -3,7 +3,6 @@ package com.burlaka.vmpusher.sample.viewmodel
 import android.app.Application
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.burlaka.vmpusher.NavigateVM
 
 
 /**

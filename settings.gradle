@@ -1,1 +1,1 @@
-include ':app', ':vmpusherprocessor', ':vmpusherannotation', ':vmpusher', ':utils'
+include ':app', ':vmpusherprocessor', ':vmpusherannotation', ':vmtaskpusher', ':utils'
