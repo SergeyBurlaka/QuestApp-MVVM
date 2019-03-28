@@ -6,6 +6,7 @@ import com.burlaka.vmpusherannotation.BindUiAction
 import com.burlaka.vmpusherannotation.BindUiListener
 import com.jellyworkz.processor.MainView.showSecureScreenForMainView
 
+//Concept our view model became presenter
 //todo add api implement to constructor
 class MainViewModel : BasePushViewModel() {
 
@@ -14,7 +15,7 @@ class MainViewModel : BasePushViewModel() {
     }
 
     //todo call request and show timer than upgrade toolbar on success and change color
-    
+
     companion object {
         @BindUiListener
         interface MainView : TaskExecutable {
