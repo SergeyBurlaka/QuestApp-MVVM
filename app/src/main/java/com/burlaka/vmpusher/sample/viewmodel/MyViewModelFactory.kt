@@ -12,8 +12,8 @@ import androidx.lifecycle.ViewModelProvider
 class MyViewModelFactory(application: Application) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        return if (modelClass == MainViewModel::class.java) {
-            MainViewModel() as T
+        return if (modelClass == MainPresenterViewModel::class.java) {
+            MainPresenterViewModel() as T
         } else throw RuntimeException()
     }
 }

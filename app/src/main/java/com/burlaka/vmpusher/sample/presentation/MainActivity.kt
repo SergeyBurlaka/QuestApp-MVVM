@@ -7,23 +7,23 @@ import com.burlaka.vmpusher.sample.BR
 import com.burlaka.vmpusher.sample.R
 import com.burlaka.vmpusher.sample.databinding.MainActivityBinding
 import com.burlaka.vmpusher.sample.presentation.base.BaseActivity
-import com.burlaka.vmpusher.sample.viewmodel.MainViewModel
+import com.burlaka.vmpusher.sample.viewmodel.MainPresenterViewModel
 import com.burlaka.vmpusher.sample.viewmodel.MyViewModelFactory
 import com.jellyworkz.processor.MainView.performTaskForMainView
 
 
 class MainActivity : BaseActivity<MainActivityBinding>(),
-    MainViewModel.Companion.MainView {
+    MainPresenterViewModel.Companion.MainView {
 
 
     override fun layoutId(): Int = R.layout.main_activity
-    private lateinit var mMainViewModel: MainViewModel
+    private lateinit var mMainPresenterViewModel: MainPresenterViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = getViewDataBinding()
 
-        this@MainActivity receiveTaskFrom mMainViewModel
+        this@MainActivity receiveTaskFrom mMainPresenterViewModel
     }
 
     override val vmPushExcutable = { id: Int ->
@@ -53,8 +53,8 @@ class MainActivity : BaseActivity<MainActivityBinding>(),
     }
 
     override fun getBaseViewModel() =
-        ViewModelProviders.of(this, MyViewModelFactory(application))[MainViewModel::class.java].apply {
-            mMainViewModel = this
+        ViewModelProviders.of(this, MyViewModelFactory(application))[MainPresenterViewModel::class.java].apply {
+            mMainPresenterViewModel = this
         }
 
     override fun bindingVmVariable(): Int = BR.viewModel

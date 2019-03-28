@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
-        <import type="com.burlaka.vmpusher.sample.viewmodel.MainViewModel"/>
-        <variable name="viewModel" type="MainViewModel"/>
+        <import type="com.burlaka.vmpusher.sample.viewmodel.MainPresenterViewModel"/>
+        <variable name="viewModel" type="MainPresenterViewModel"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

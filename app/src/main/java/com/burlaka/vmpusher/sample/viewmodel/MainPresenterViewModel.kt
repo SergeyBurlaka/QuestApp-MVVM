@@ -1,14 +1,14 @@
 package com.burlaka.vmpusher.sample.viewmodel
 
-import com.burlaka.vmpusher.BasePushViewModel
+import com.burlaka.vmpusher.BasePresenterViewModel
 import com.burlaka.vmpusher.TaskExecutable
 import com.burlaka.vmpusherannotation.BindUiAction
 import com.burlaka.vmpusherannotation.BindUiListener
 import com.jellyworkz.processor.MainView.showSecureScreenForMainView
 
-//Concept our view model became presenter
+
 //todo add api implement to constructor
-class MainViewModel : BasePushViewModel() {
+class MainPresenterViewModel : BasePresenterViewModel() {
 
     fun goToSecure() {
         showSecureScreenForMainView() pushBy vmTaskPusher

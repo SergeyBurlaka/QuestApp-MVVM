@@ -2,8 +2,8 @@
 <layout>
     <data>
 
-        <import type="com.burlaka.vmpusher.sample.viewmodel.MainViewModel"/>
-        <variable name="viewModel" type="MainViewModel"/>
+        <import type="com.burlaka.vmpusher.sample.viewmodel.MainPresenterViewModel"/>
+        <variable name="viewModel" type="MainPresenterViewModel"/>
     </data>
     <FrameLayout
             xmlns:android="http://schemas.android.com/apk/res/android"
