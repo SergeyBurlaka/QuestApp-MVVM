@@ -1,18 +1,23 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 28
+
+
+
     defaultConfig {
-        applicationId "com.burlaka.vmpusher.sample"
         minSdkVersion 19
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -20,14 +25,8 @@ android {
         }
     }
 
-    sourceSets {
-        main {
-            java {
-                srcDir "${buildDir.absolutePath}/generated/source/kaptKotlin/"
-            }
-        }
-    }
     dataBinding { enabled = true }
+
 }
 
 dependencies {
@@ -40,17 +39,6 @@ dependencies {
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
 }
 
-//vmpusher
-dependencies {
-    implementation project(':vmpusher')
-    compileOnly project(path: ':vmpusherannotation')
-    kapt project(':vmpusherprocessor')
-}
-
-//utils
-dependencies{
-    implementation project(':utils')
-}
 
 //ArchComponents
 dependencies {
@@ -62,3 +50,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$room_compiler_version"
 }
 
+//Glide
+dependencies {
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
+}
