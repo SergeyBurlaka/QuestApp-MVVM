@@ -21,15 +21,15 @@ interface INavigate {
         }
     }
 
-    fun NavigateVM.navigateBind(activity: AppCompatActivity): NavigateVM {
+    infix fun AppCompatActivity.receivePushesFrom(navigate: NavigateVM): NavigateVM {
         getNavigate()?.let { f ->
-            getBaseNavigator().vector.observe(activity, Observer<NavigateEvent<Int>> {
-                activity.getSingleResult(it)?.let { navigateId ->
+            navigate.getBaseNavigator().vector.observe(this, Observer<NavigateEvent<Int>> {
+                this.getSingleResult(it)?.let { navigateId ->
                     f.invoke(navigateId)
                 }
             })
         }
-        return this
+        return navigate
     }
 
     /**

@@ -1,11 +1,27 @@
 package com.burlaka.utils.ext
 
+import android.content.Context
 import android.util.Log
 import android.view.WindowManager
+import android.view.inputmethod.InputMethodManager
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 
+
+fun FragmentActivity.showKeyboardExt() {
+    val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    imm.showSoftInput(currentFocus, InputMethodManager.SHOW_FORCED)
+}
+
+fun FragmentActivity.hideKeyboardExt() {
+    val view = this.currentFocus
+    if (view != null) {
+        (getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?)?.hideSoftInputFromWindow(
+            view.windowToken, 0
+        )
+    }
+}
 
 inline fun FragmentActivity.setContentFragment(
     enter: Int,
@@ -58,7 +74,7 @@ fun FragmentActivity.setWhiteStatusBar() {
     window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
 
 // finally change the color
-    window.statusBarColor = ContextCompat.getColor(this, android.R.color.white)
+    //window.statusBarColor = ContextCompat.getColor(this, android.R.color.white)
 }
 
 fun FragmentActivity.log_d(mess: String?) {
