@@ -8,16 +8,15 @@ import androidx.lifecycle.ViewModel
  *  How does Google ViewModel and LiveData upgrade?
  *  Hm, sometime I want to call method from view. Because it is very useful! For navigation eg.
  *
- *  To use LiveData you need to subscribe the data - activity must to implement observer callback.
+ *  To use LiveData you need to subscribe the data - activity must to implement observer callback. Not so simple i say.
  *  You can simple add Activity context to ViewModel. But i doesn't think it is good idea!
  *  You can use weak reference but it isn't the best idea!
  *
  *  I want to present VmTaskPusher. It helps to push you task to Activity by live data but with some Live Data Implement encapsulation.
- *  So You just calls the methods and that all.
+ *  With VmTaskPusher You just calls the methods and that all.
  *
- *  ViewModel via VmTaskPusher became the Presenter in some way.
- *  Use MVVM and MVP in some way at the same time!!
- *  In the end You get Model-View-Presenter-ViewModel (MVPVM) or Upgraded View Model Simple. Joke ;) As for me, funny to call it "PresenterVieModel" ;)
+ *  Funny, but ViewModel via VmTaskPusher becomes the Presenter in some way. Use MVVM and MVP abilities in some way at the same time!
+ *  In the end You get Model-View-Presenter-View-Model (MVPVM) or Upgraded View Model Simple. Joke ;) As for me, funny to call it "PresenterVieModel" ;)
  *
  *  So, as early You can subscribe to ViewModel LiveData from Activity,
  *  but now You can simply calling methods from ViewModel to Activity pushing You task via VmTaskPusher,
