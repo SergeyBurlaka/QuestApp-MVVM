@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModel
  *  With VmTaskPusher You just calls the methods and that all.
  *
  *  Funny, but ViewModel via VmTaskPusher becomes the Presenter in some way. Use MVVM and MVP abilities in some way at the same time!
- *  In the end You get Model-View-Presenter-View-Model (MVPVM) or Upgraded View Model Simple. Joke ;) As for me, funny to call it "PresenterVieModel" ;)
+ *  In the end You get Model-View-Presenter-View-Model (MVPVM) or Upgraded View Model. Joke ;) As for me, funny to call it "PresenterVieModel" ;)
  *
  *  So, as early You can subscribe to ViewModel LiveData from Activity,
  *  but now You can simply calling methods from ViewModel to Activity pushing You task via VmTaskPusher,
