@@ -32,8 +32,8 @@ class MainActivity : BaseActivity<MainActivityBinding>(),
         this@MainActivity receiveTaskFrom mMainPresenterViewModel
     }
 
-    override val vmPushExcutable = { id: Int ->
-        performTaskForMainView(listenerId = this, actionId = id)
+    override val vmPushExcutable = { actionId: Int ->
+        performTaskForMainView(this, actionId)
     }
 
     override fun startClock() {
