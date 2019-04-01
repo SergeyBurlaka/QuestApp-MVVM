@@ -1,5 +1,7 @@
 package com.burlaka.vmpusher
 
+import android.os.Handler
+import android.os.Looper
 import androidx.lifecycle.ViewModel
 
 /**
@@ -29,10 +31,10 @@ abstract class BasePresenterViewModel :
     ViewModel(),
     VmTaskPusher {
 
-    val vmTaskPusher: BasePusher = BasePusher()
-    override fun getBaseNavigator() = vmTaskPusher
+    val taskPusher: BasePusher = BasePusher()
+    override fun getBaseNavigator() = taskPusher
     infix fun Int.cashTo(pusher: BasePusher) = pusher.cache(this)
-    infix fun Int.pushBy(pusher: BasePusher) = pusher.pushTaskById(this)
+    infix fun Int.pushBy(pusher: BasePusher) = Handler(Looper.getMainLooper()).post { pusher.pushTaskById(this) }
 
     override fun toString(): String {
         return "view model with type ${this::class.java.simpleName}"

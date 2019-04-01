@@ -1,38 +1,56 @@
 package com.burlaka.vmpusher.sample.viewmodel
 
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.burlaka.utils.ext.logE
 import com.burlaka.vmpusher.BasePresenterViewModel
 import com.burlaka.vmpusher.TaskExecutable
 import com.burlaka.vmpusherannotation.BindUiAction
 import com.burlaka.vmpusherannotation.BindUiListener
-import com.jellyworkz.processor.MainView.showSecureScreenForMainView
+import com.jellyworkz.processor.MainView.startClockForMainView
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.Disposables
+import io.reactivex.schedulers.Schedulers
 
 
-//todo add api implement to constructor
-class MainPresenterViewModel : BasePresenterViewModel() {
+class MainPresenterViewModel(private val timerEngine: TimerEngine) : BasePresenterViewModel() {
 
-    fun goToSecure() {
-        showSecureScreenForMainView() pushBy vmTaskPusher
+    val timer: LiveData<String>
+        get() = _timer
+
+    fun startTimer() {
+        disposable =
+                timerEngine.getLockImpulses()
+                    .map { it.timeCount }
+                    .map { "$it" }
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .doOnSubscribe {
+                        disposable.dispose()
+                        startClockForMainView() pushBy taskPusher
+                    }
+                    .subscribe({
+                        _timer.value = it
+                    }, {
+                        this@MainPresenterViewModel.logE("Failed: ${it.message}")
+                    })
+
     }
-
-    //todo call request and show timer than upgrade toolbar on success and change color
 
     companion object {
         @BindUiListener
         interface MainView : TaskExecutable {
-            @BindUiAction(actionId = 1)
-            fun showSecureScreen()
-
-            @BindUiAction(actionId = 2)
-            fun showProgressBar()
-
-            @BindUiAction(actionId = 3)
-            fun upgradeToolbar()
-
-            @BindUiAction(actionId = 4)
-            fun changeColor()
 
             @BindUiAction(actionId = 5)
-            fun showClock()
+            fun startClock()
         }
     }
+
+    override fun onCleared() {
+        disposable.dispose()
+        super.onCleared()
+    }
+
+    private val _timer = MutableLiveData<String>()
+    private var disposable = Disposables.empty()
 }

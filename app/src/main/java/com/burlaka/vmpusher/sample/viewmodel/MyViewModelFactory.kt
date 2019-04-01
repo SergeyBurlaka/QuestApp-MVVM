@@ -13,7 +13,7 @@ class MyViewModelFactory(application: Application) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return if (modelClass == MainPresenterViewModel::class.java) {
-            MainPresenterViewModel() as T
+            MainPresenterViewModel(TimerEngine()) as T
         } else throw RuntimeException()
     }
 }

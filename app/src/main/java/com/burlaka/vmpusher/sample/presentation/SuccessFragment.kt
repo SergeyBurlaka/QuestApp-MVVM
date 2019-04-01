@@ -10,10 +10,10 @@ import com.burlaka.vmpusher.sample.R
 import com.burlaka.vmpusher.sample.viewmodel.SecureViewModel
 
 
-class SecureFragment : Fragment() {
+class SuccessFragment : Fragment() {
 
     companion object {
-        fun newInstance() = SecureFragment()
+        fun newInstance() = SuccessFragment()
     }
 
     private lateinit var viewModel: SecureViewModel
@@ -22,7 +22,7 @@ class SecureFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.secure_fragment, container, false)
+        return inflater.inflate(R.layout.success_fragment, container, false)
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
