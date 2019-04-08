@@ -31,10 +31,10 @@ abstract class PusherViewModel :
     ViewModel(),
     VmTaskPusher {
 
-    val taskNotificator: TaskNotificatorCenter = TaskNotificatorCenter()
-    override fun getBaseNavigator() = taskNotificator
-    infix fun Int.cashTo(pusher: TaskNotificatorCenter) = pusher.cache(this)
-    infix fun Int.pushBy(pusher: TaskNotificatorCenter) = Handler(Looper.getMainLooper()).post { pusher.pushTaskById(this) }
+    val viewCommander: ViewCommander = ViewCommander()
+    override fun getBaseNavigator() = viewCommander
+    infix fun Int.cashTo(pusher: ViewCommander) = pusher.cache(this)
+    infix fun Int.forceBy(pusher: ViewCommander) = Handler(Looper.getMainLooper()).post { pusher.pushTaskById(this) }
 
     override fun toString(): String {
         return "view model with type ${this::class.java.simpleName}"

@@ -36,8 +36,8 @@ class MainViewModel(private val timerEngine: TimerEngine) : PusherViewModel() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe {
-                        startClockForMainView() pushBy taskNotificator
-                        showFirstQuestionForMainView() pushBy taskNotificator
+                        startClockForMainView() forceBy viewCommander
+                        showFirstQuestionForMainView() forceBy viewCommander
                     }
                     .subscribe({
                         _timerLiveData.value = it

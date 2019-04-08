@@ -11,9 +11,9 @@ import androidx.lifecycle.Observer
  */
 interface TaskExecutable {
 
-    fun AppCompatActivity.navigateBind(taskNotificatorCenter: TaskNotificatorCenter) {
+    fun AppCompatActivity.navigateBind(viewCommander: ViewCommander) {
         vmPushExcutable.let { f ->
-            taskNotificatorCenter.taskLiveData.observe(this, Observer {
+            viewCommander.taskLiveData.observe(this, Observer {
                 getSingleResult(it)?.let { navigateId ->
                     f.invoke(navigateId)
                 }
@@ -41,11 +41,11 @@ interface TaskExecutable {
 
 interface VmTaskPusher {
 
-    fun getBaseNavigator(): TaskNotificatorCenter
+    fun getBaseNavigator(): ViewCommander
 
 }
 
-class TaskNotificatorCenter {
+class ViewCommander {
 
     val taskLiveData: LiveData<PushingTask<Int>>
         get() = _task

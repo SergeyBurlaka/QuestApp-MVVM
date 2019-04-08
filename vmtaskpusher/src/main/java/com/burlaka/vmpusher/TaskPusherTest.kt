@@ -3,14 +3,14 @@ package com.burlaka.vmpusher
 import android.util.Log
 
 
-val testPusher: TaskNotificatorCenter
-    get() = TaskNotificatorCenter()
+val testPusher: ViewCommander
+    get() = ViewCommander()
 
 const val screen_1 = 1
 const val screen_2 = 2
 const val screen_3 = 3
 
-fun TaskNotificatorCenter.testNavigateOneScreen() {
+fun ViewCommander.testNavigateOneScreen() {
     "testNavigateOneScreen".divide()
 
     testPusher.apply {
@@ -25,7 +25,7 @@ fun TaskNotificatorCenter.testNavigateOneScreen() {
     }
 }
 
-fun TaskNotificatorCenter.testNavigateCashTwoScreens() {
+fun ViewCommander.testNavigateCashTwoScreens() {
     "testNavigateCashTwoScreens".divide()
 
     testPusher.apply {
@@ -42,7 +42,7 @@ fun TaskNotificatorCenter.testNavigateCashTwoScreens() {
     }
 }
 
-fun TaskNotificatorCenter.tesNavigateCashOnBackTwoScreens() {
+fun ViewCommander.tesNavigateCashOnBackTwoScreens() {
     "tesNavigateCashOnBackTwoScreens".divide()
 
     testPusher.apply {
@@ -62,7 +62,7 @@ fun TaskNotificatorCenter.tesNavigateCashOnBackTwoScreens() {
     }
 }
 
-fun TaskNotificatorCenter.tesNavigateCashAfterRestoreFromCash() {
+fun ViewCommander.tesNavigateCashAfterRestoreFromCash() {
     "tesNavigateCashAfterRestoreFromCash".divide()
 
     testPusher.apply {
@@ -86,7 +86,7 @@ fun TaskNotificatorCenter.tesNavigateCashAfterRestoreFromCash() {
     }
 }
 
-fun TaskNotificatorCenter.tesNavigateCashAfterRestoreFromCash_2() {
+fun ViewCommander.tesNavigateCashAfterRestoreFromCash_2() {
     "tesNavigateCashAfterRestoreFromCash_2".divide()
 
     testPusher.apply {
