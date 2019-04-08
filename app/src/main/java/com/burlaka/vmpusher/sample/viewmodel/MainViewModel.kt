@@ -14,8 +14,8 @@ import com.burlaka.vmpusher.sample.viewmodel.MainViewModel.TestData.C
 import com.burlaka.vmpusher.sample.viewmodel.MainViewModel.TestData.questions
 import com.burlaka.vmpusherannotation.BindUiAction
 import com.burlaka.vmpusherannotation.BindUiListener
-import com.jellyworkz.processor.MainView.showFirstQuestionForMainView
-import com.jellyworkz.processor.MainView.startClockForMainView
+import com.jellyworkz.processor.MainView.showFirstQuestionMainView
+import com.jellyworkz.processor.MainView.startClockMainView
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposables
 import io.reactivex.schedulers.Schedulers
@@ -36,8 +36,11 @@ class MainViewModel(private val timerEngine: TimerEngine) : PusherViewModel() {
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .doOnSubscribe {
-                        startClockForMainView() pushBy viewCommander
-                        showFirstQuestionForMainView() pushBy viewCommander
+
+                        startClockMainView() pushBy viewCommander
+
+                        showFirstQuestionMainView() pushBy viewCommander
+
                     }
                     .subscribe({
                         _timerLiveData.value = it

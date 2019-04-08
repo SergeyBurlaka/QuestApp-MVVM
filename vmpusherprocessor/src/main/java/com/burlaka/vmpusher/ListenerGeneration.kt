@@ -157,7 +157,7 @@ class ListenerGeneration : AbstractProcessor() {
         )
 
         FunSpec
-            .builder(name = "${annotatedMethod.simpleName}For$listenerLastName")
+            .builder(name = "${annotatedMethod.simpleName}$listenerLastName")
             .addModifiers(KModifier.PUBLIC)
             .returns(Int::class)
             .addCode(

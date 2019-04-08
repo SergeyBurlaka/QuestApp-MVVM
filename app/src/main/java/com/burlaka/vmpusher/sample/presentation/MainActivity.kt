@@ -41,7 +41,6 @@ class MainActivity : BaseActivity<MainActivityBinding>(), MainViewModel.Companio
         }
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         mBinding = getViewDataBinding()
@@ -52,7 +51,6 @@ class MainActivity : BaseActivity<MainActivityBinding>(), MainViewModel.Companio
     override val vmPushExcutable = { actionId: Int ->
         performTaskForMainView(this, actionId)
     }
-
 
     override fun getBaseViewModel() =
         ViewModelProviders.of(
