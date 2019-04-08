@@ -16,7 +16,7 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     protected var baseActivity: FragmentHost? = null
         private set
     private var mRootView: View? = null
-    lateinit var viewDataBinding: T
+    lateinit var mViewDataBinding: T
 
     /**
      * @return layout resource id
@@ -38,14 +38,14 @@ abstract class BaseFragment<T : ViewDataBinding> : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewDataBinding = DataBindingUtil.inflate(
+        mViewDataBinding = DataBindingUtil.inflate(
             inflater,
             layoutId,
             container,
             false
         )
 
-        mRootView = viewDataBinding.root
+        mRootView = mViewDataBinding.root
         return mRootView
     }
 

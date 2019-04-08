@@ -11,7 +11,7 @@ import com.burlaka.utils.ext.hideKeyboardExt
 import com.burlaka.utils.ext.showKeyboardExt
 import com.burlaka.utils.ext.snackAlert
 import com.burlaka.vmpusher.TaskExecutable
-import com.burlaka.vmpusher.BasePresenterViewModel
+import com.burlaka.vmpusher.PusherViewModel
 
 
 abstract class BaseActivity<T : ViewDataBinding> :
@@ -44,13 +44,13 @@ abstract class BaseActivity<T : ViewDataBinding> :
      * VM
      */
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private var baseViewModel: BasePresenterViewModel? = null
+    private var baseViewModel: PusherViewModel? = null
 
     /**
      * Base VM activityBind
      * @return base VM if exist
      */
-    abstract fun getBaseViewModel(): BasePresenterViewModel?
+    abstract fun getBaseViewModel(): PusherViewModel?
 
     /**
      * Override for set binding variable
@@ -58,7 +58,7 @@ abstract class BaseActivity<T : ViewDataBinding> :
      */
     abstract fun bindingVmVariable(): Int?
 
-    private fun BasePresenterViewModel.dataBind(): BasePresenterViewModel {
+    private fun PusherViewModel.dataBind(): PusherViewModel {
         viewDataBinding?.let {
             it.setVariable(bindingVmVariable()!!, this)
             it.executePendingBindings()
@@ -66,7 +66,7 @@ abstract class BaseActivity<T : ViewDataBinding> :
         return this
     }
 
-    private fun BasePresenterViewModel.activityBind(): BasePresenterViewModel {
+    private fun PusherViewModel.activityBind(): PusherViewModel {
         if (baseViewModel == null) {
             baseViewModel = this
         }
@@ -108,6 +108,6 @@ abstract class BaseActivity<T : ViewDataBinding> :
         getViewDataBinding().root.snackAlert(errorMess)
     }
 
-    protected val viewModelRegistration = ArrayList<BasePresenterViewModel>()
+    protected val viewModelRegistration = ArrayList<PusherViewModel>()
 
 }

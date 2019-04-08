@@ -5,7 +5,7 @@ import androidx.lifecycle.ViewModelProviders
 import com.burlaka.vmpusher.sample.R
 import com.burlaka.vmpusher.sample.databinding.HomeFragmentBinding
 import com.burlaka.vmpusher.sample.presentation.base.BaseFragment
-import com.burlaka.vmpusher.sample.viewmodel.MainPresenterViewModel
+import com.burlaka.vmpusher.sample.viewmodel.MainViewModel
 
 
 class HomeFragment : BaseFragment<HomeFragmentBinding>() {
@@ -14,11 +14,12 @@ class HomeFragment : BaseFragment<HomeFragmentBinding>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        ViewModelProviders.of(activity!!)[MainPresenterViewModel::class.java].bindToView()
+        ViewModelProviders.of(activity!!)[MainViewModel::class.java].bindToView()
+        mViewDataBinding.lifecycleOwner = this
     }
 
-    private fun MainPresenterViewModel.bindToView(): MainPresenterViewModel {
-        viewDataBinding.viewModel = this
+    private fun MainViewModel.bindToView(): MainViewModel {
+        mViewDataBinding.viewModel = this
         return this
     }
 }

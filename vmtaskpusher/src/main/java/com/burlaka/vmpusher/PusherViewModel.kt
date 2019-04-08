@@ -27,14 +27,14 @@ import androidx.lifecycle.ViewModel
  *  You know, I think it is little crazy but to match usefully in some cases.
  *  For navigation eg. //todo describe sample with navigation
  */
-abstract class BasePresenterViewModel :
+abstract class PusherViewModel :
     ViewModel(),
     VmTaskPusher {
 
-    val taskPusher: BasePusher = BasePusher()
-    override fun getBaseNavigator() = taskPusher
-    infix fun Int.cashTo(pusher: BasePusher) = pusher.cache(this)
-    infix fun Int.pushBy(pusher: BasePusher) = Handler(Looper.getMainLooper()).post { pusher.pushTaskById(this) }
+    val taskNotificator: TaskNotificatorCenter = TaskNotificatorCenter()
+    override fun getBaseNavigator() = taskNotificator
+    infix fun Int.cashTo(pusher: TaskNotificatorCenter) = pusher.cache(this)
+    infix fun Int.pushBy(pusher: TaskNotificatorCenter) = Handler(Looper.getMainLooper()).post { pusher.pushTaskById(this) }
 
     override fun toString(): String {
         return "view model with type ${this::class.java.simpleName}"
