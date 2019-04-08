@@ -15,7 +15,7 @@ fun ViewCommander.testNavigateOneScreen() {
 
     testPusher.apply {
 
-        pushTaskById(screen_1)
+        postTaskById(screen_1)
         cache(screen_1)
 
         (taskLiveData.value!!.peekContent() == screen_1) assert "Navigate to screen 1"
@@ -30,10 +30,10 @@ fun ViewCommander.testNavigateCashTwoScreens() {
 
     testPusher.apply {
 
-        pushTaskById(screen_1)
+        postTaskById(screen_1)
         cache(screen_1)
 
-        pushTaskById(screen_2)
+        postTaskById(screen_2)
         cache(screen_2)
 
         (taskLiveData.value!!.peekContent() == screen_2) assert "Current navigate is screen 2"
@@ -47,10 +47,10 @@ fun ViewCommander.tesNavigateCashOnBackTwoScreens() {
 
     testPusher.apply {
 
-        pushTaskById(screen_1)
+        postTaskById(screen_1)
         cache(screen_1)
 
-        pushTaskById(screen_2)
+        postTaskById(screen_2)
         cache(screen_2)
 
         onBack() assert "back return success"
@@ -67,14 +67,14 @@ fun ViewCommander.tesNavigateCashAfterRestoreFromCash() {
 
     testPusher.apply {
 
-        pushTaskById(screen_1)
+        postTaskById(screen_1)
         cache(screen_1)
 
         taskLiveData.value!!.getContentIfNotHandled()
 
         restoreFromCash(screen_2)
 
-        pushTaskById(screen_2)
+        postTaskById(screen_2)
         cache(screen_2)
 
         onBack() assert "back return success"
@@ -93,7 +93,7 @@ fun ViewCommander.tesNavigateCashAfterRestoreFromCash_2() {
 
         restoreFromCash(screen_2)
 
-        pushTaskById(screen_3)
+        postTaskById(screen_3)
         cache(screen_3)
 
         onBack() assert "back return success"

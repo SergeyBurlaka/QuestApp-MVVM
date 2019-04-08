@@ -34,7 +34,9 @@ abstract class PusherViewModel :
     val viewCommander: ViewCommander = ViewCommander()
     override fun getBaseNavigator() = viewCommander
     infix fun Int.cashTo(pusher: ViewCommander) = pusher.cache(this)
-    infix fun Int.forceBy(pusher: ViewCommander) = Handler(Looper.getMainLooper()).post { pusher.pushTaskById(this) }
+    infix fun Int.pushBy(pusher: ViewCommander) = Handler(Looper.getMainLooper()).post {
+        pusher.postTaskById(this)
+    }
 
     override fun toString(): String {
         return "view model with type ${this::class.java.simpleName}"

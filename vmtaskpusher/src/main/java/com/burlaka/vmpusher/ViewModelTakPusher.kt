@@ -51,7 +51,7 @@ class ViewCommander {
         get() = _task
     private var _task = MutableLiveData<PushingTask<Int>>()
 
-    fun pushTaskById(id: Int): Int {
+    fun postTaskById(id: Int): Int {
         _task.value = PushingTask(id)
         return id
     }
@@ -79,7 +79,7 @@ class ViewCommander {
 
     fun restoreFromCash(defoltActionId: Int) {
         if (_task.value == null) {
-            pushTaskById(defoltActionId).casheId()
+            postTaskById(defoltActionId).casheId()
         } else {
             _task.value!!.peekContent().navigateToById()
         }
