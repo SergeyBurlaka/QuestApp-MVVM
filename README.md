@@ -1,8 +1,8 @@
 # VmPusher module and "QuestApp" demo
 
-I want to intruduce my demo "QuestApp" project 
-with usage Kotlin MVVM, Databindg, RxJava2 together with my personal created module ```VMPusher```
-for more easly ViewModel and View interaction like in MVP style!
+### I want to intruduce my demo "QuestApp" project 
+### with usage Kotlin MVVM, Databindg, RxJava2 together with my personal created module ```VMPusher```
+### for more easly ViewModel and View interaction like in MVP style!
 
 To send execute action from View Model to view (using ```Google Live Data``` under the hood ) with ```VmPusher``` will looks like: 
 
