@@ -5,15 +5,27 @@
 
 ## Intro 
 
-To send an execute action from ```ViewModel``` to ```View``` (using ```Google Live Data``` under the hood ) with ```VmPusher``` will looks like: 
+To send an execute action from ```ViewModel``` to ```View``` (still using ```Google Live Data``` under the hood ) with ```VmPusher``` will looks like:
 
+in ViewModel
 ```kotlin
+  val viewCommander: ViewCommander = ViewCommander()
   startClockMainView() pushBy viewCommander
 ```
+in Activity:
+```kotlin
+
+ class MainActivity : BaseActivity<MainActivityBinding>(), MainViewModel.Companion.MainView{
+   override fun startClock() {
+    //...
+   }
+ }
+ 
+```
+
 And that's all!
 
-
-In under the hood you use ```LiveData```, but now no need to write ```observe``` method, create ```LiveData```, create ```MutableLiveData```, code to add ```Life Circle Owner``` to observe method and other boiler plate!
+In under the hood you still use ```LiveData```, but now no need to write ```observe``` method, create ```LiveData```, create ```MutableLiveData```, code to add ```Life Circle Owner``` to observe method and other boiler plate!
 ```VmPusher``` do it self! Amazing!
 
 ## Details
