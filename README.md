@@ -38,6 +38,18 @@ It can be usefully in some cases (For navigation, ask view ask to execute action
 
 # Usage sample 
 
+## First download the source and add 3 modules ( [```vmtaskpusher```](https://github.com/SergeyBurlaka/QuestApp-MVVM/tree/feature/improve_code_gen/vmtaskpusher),[```vmpusherannotation```](https://github.com/SergeyBurlaka/VmPusher/tree/feature/improve_code_gen/vmpusherannotation),[vmpusher](https://github.com/SergeyBurlaka/VmPusher/tree/feature/improve_code_gen/vmpusherprocessor)) to your project ass libraries. Than in gradle you need write modules dependency:
+
+```groovy
+//vmpusher
+dependencies {
+    implementation project(':vmtaskpusher')
+    compileOnly project(path: ':vmpusherannotation')
+    kapt project(':vmpusherprocessor')
+}
+```
+So now you ready start to write your project with VmPusher!
+
 ## extend from ```PusherViewModel```
 
 ```kotlin
