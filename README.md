@@ -25,7 +25,7 @@ in ```Activity```:
  
 ```
 
-And that's all!!
+## And that's all!!
 
 In under the hood you still use ```LiveData```, but now no need to write ```observe``` method, create ```LiveData```, create ```MutableLiveData```, code to add ```Life Circle Owner``` to observe method and other boiler plate!
 ```VmPusher``` do it self! Amazing!
@@ -48,9 +48,10 @@ dependencies {
     kapt project(':vmpusherprocessor')
 }
 ```
-# So now you ready start to write your project with VmPusher!
-# Let's Begin!
-## extend from ```PusherViewModel```
+## So now you ready start to write your project with VmPusher!
+## Let's Begin!
+
+### extend from ```PusherViewModel```
 
 ```kotlin
 MainViewModel(private val timerEngine: TimerEngine) : PusherViewModel(){
@@ -58,7 +59,7 @@ MainViewModel(private val timerEngine: TimerEngine) : PusherViewModel(){
 }
 ```
 
-## implements you BaseActivity from  ```TaskExecutable```
+### implements you BaseActivity from  ```TaskExecutable```
 
 ```kotlin
   abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity(),
@@ -68,7 +69,7 @@ MainViewModel(private val timerEngine: TimerEngine) : PusherViewModel(){
     
 ```
     
-## in activity owweride method and init excutePuher:
+### in activity owweride method and init excutePuher:
     
 ```kotlin
 class MainActivity : BaseActivity<MainActivityBinding>()
@@ -87,7 +88,7 @@ class MainActivity : BaseActivity<MainActivityBinding>()
 }
    ``` 
 
-## create view interface for ctivty or Fragment and add Anotation:
+### create view interface for ctivty or Fragment and add Anotation:
 
 ```kotlin
     companion object {
@@ -103,7 +104,7 @@ class MainActivity : BaseActivity<MainActivityBinding>()
     }
 ```
 
-## implement MainView in your activity:
+### implement MainView in your activity:
 
 ```kotlin
 
