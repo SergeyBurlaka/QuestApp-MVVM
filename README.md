@@ -1,13 +1,19 @@
 # VmPusher module and "QuestApp" demo
 
-## Let me introduce my demo ```"QuestApp"``` project with usage ```Kotlin MVVM```, ```Databindg```, ```RxJava2``` together with my personal created module ```VMPusher``` for more easly ViewModel and View interaction like in MVP style!
+## Let me show the simple demo ```"QuestApp"``` with usage ```Kotlin MVVM```, ```Databindg```, ```RxJava2``` together 
+## with my personal created module ```VMPusher``` for one thing! 
+## More easly ViewModel and View interaction like MVP style!
 
-To send execute action from View Model to view (using ```Google Live Data``` under the hood ) with ```VmPusher``` will looks like: 
+## Intro 
+
+To send an execute action from ```ViewModel``` to ```View``` (using ```Google Live Data``` under the hood ) with ```VmPusher``` will looks like: 
 
 ```kotlin
   startClockMainView() pushBy viewCommander
 ```
 And that's all!
+
+
 In under the hood you use ```LiveData```, but now no need to write ```observe``` method, create ```LiveData```, create ```MutableLiveData```, code to add ```Life Circle Owner``` to observe method and other boiler plate!
 ```VmPusher``` do it self! Amazing!
 
