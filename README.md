@@ -1,4 +1,4 @@
-# QuestApp-MVVM
+# VmPusher module and "QuestApp" demo
 
 I want to intruduce my demo project with usage Kotlin MVVM, Databindg, RxJava2   
 together with my personal created module ```VMPusher``` for more easly ViewModel and View 
