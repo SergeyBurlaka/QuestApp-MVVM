@@ -36,7 +36,7 @@ I have create module the [```vmtaskpusher```](https://github.com/SergeyBurlaka/Q
 for more easly calling method on view. (Usage LiveData and Kotlin codogeneration under the hood)
 It can be usefully in some cases (For navigation, ask view ask to execute action etc)
 
-# Usage sample 
+# Usage  
 
  First download the source and add  1 main ([```vmtaskpusher```](https://github.com/SergeyBurlaka/QuestApp-MVVM/tree/feature/improve_code_gen/vmtaskpusher)) and 2 supporting modules ([```vmpusherannotation```](https://github.com/SergeyBurlaka/VmPusher/tree/feature/improve_code_gen/vmpusherannotation) and [vmpusherprocessor](https://github.com/SergeyBurlaka/VmPusher/tree/feature/improve_code_gen/vmpusherprocessor)) to your project ass libraries. Than in gradle you need write modules dependency:
 
