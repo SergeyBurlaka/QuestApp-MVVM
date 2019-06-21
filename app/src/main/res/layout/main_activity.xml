@@ -8,7 +8,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@android:color/holo_green_dark"
+            android:background="@android:color/white"
             tools:context=".presentation.MainActivity">
 
         <androidx.constraintlayout.widget.Guideline
@@ -45,6 +45,20 @@
                     android:layout_gravity="center"
                     android:src="@drawable/anim_svg_timer"
                     tools:visibility="visible"/>
+
+            <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_start_screen"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="@drawable/ic_lets_start_2"
+                    android:scaleType="fitXY"
+                    app:layout_constraintBottom_toBottomOf="@id/guideline"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+            />
 
         </FrameLayout>
 

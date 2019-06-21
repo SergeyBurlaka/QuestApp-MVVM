@@ -2,6 +2,7 @@ package com.burlaka.vmpusher.sample.presentation
 
 import android.graphics.drawable.Animatable
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProviders
 import androidx.vectordrawable.graphics.drawable.AnimatedVectorDrawableCompat
 import com.burlaka.utils.ext.setContentFragment
@@ -14,31 +15,34 @@ import com.burlaka.vmpusher.sample.viewmodel.MyViewModelFactory
 import com.jellyworkz.processor.MainView.performTaskForMainView
 
 
-class MainActivity : BaseActivity<MainActivityBinding>(), MainViewModel.Companion.MainView {
-
+class MainActivity : BaseActivity<MainActivityBinding>(), MainViewModel.MainView {
 
     override fun layoutId(): Int = R.layout.main_activity
     private lateinit var mMainViewModel: MainViewModel
 
     override fun startClock() {
-        mBinding.ivProgress.apply {
-            setImageDrawable(animatedVectorDrawableCompat)
-            (drawable as Animatable).apply {
-                if (this.isRunning) {
-                    stop()
+        mBinding.apply {
+            vTimer.visibility = View.VISIBLE
+            ivStartScreen.visibility = View.GONE
+            ivProgress.apply {
+                setImageDrawable(animatedVectorDrawableCompat)
+                (drawable as Animatable).apply {
+                    if (this.isRunning) {
+                        stop()
+                    }
+                    start()
                 }
-                start()
             }
         }
     }
 
     override fun showFirstQuestion() {
-        setContentFragment(
-            containerViewId = contentId,
-            backStack = true
-        ) {
-            QuestionFragment.newInstance()
-        }
+        setContentFragment(containerViewId = contentId, backStack = true) { QuestionFragment.newInstance() }
+    }
+
+    override fun showFinishTest() {
+        mBinding.vTimer.visibility = View.GONE
+        setContentFragment(containerViewId = contentId, backStack = true) { SuccessFragment.newInstance() }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -8,61 +8,71 @@
                   type="MainViewModel"/>
     </data>
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@android:color/white"
-                android:focusable="true"
-                android:clickable="true"
-                tools:context=".presentation.HomeFragment">
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/white"
+            android:focusable="true"
+            android:clickable="true"
+            tools:context=".presentation.HomeFragment">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/ThemQuestionItemTV"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@{viewModel.questionLiveData.getValue().questionText}"
-                    android:gravity="center"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintVertical_bias="0.4"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:id="@+id/appCompatTextView"
-                    app:layout_constraintVertical_chainStyle="packed"
-                    app:layout_constraintBottom_toTopOf="@id/rgv_answers"
-                    tools:text="Hi Android!"
-            />
+        <androidx.appcompat.widget.AppCompatTextView
+                style="@style/ThemQuestionItemTV"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.questionLiveData.getValue().questionText}"
+                android:gravity="center"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintVertical_bias="0.4"
+                app:layout_constraintTop_toTopOf="parent"
+                android:id="@+id/appCompatTextView"
+                app:layout_constraintVertical_chainStyle="packed"
+                app:layout_constraintBottom_toTopOf="@id/rgv_answers"
+                tools:text="Hi Android!"
+        />
 
-            <RadioGroup
-                    android:id="@+id/rgv_answers"
+        <RadioGroup
+                android:id="@+id/rgv_answers"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:onCheckedChanged="@{viewModel.onCheckedChanged}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView">
+
+            <RadioButton
+                    android:text="@{viewModel.questionLiveData.getValue().variations[TestData.A]}"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onCheckedChanged="@{viewModel.onCheckedChanged}"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView">
+                    android:id="@+id/radioButton"/>
 
-                <RadioButton
-                        android:text="@{viewModel.questionLiveData.getValue().variations[TestData.A]}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/radioButton"/>
+            <RadioButton
+                    android:text="@{viewModel.questionLiveData.getValue().variations[TestData.B]}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton2"/>
 
-                <RadioButton
-                        android:text="@{viewModel.questionLiveData.getValue().variations[TestData.B]}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/radioButton2"/>
+            <RadioButton
+                    android:text="@{viewModel.questionLiveData.getValue().variations[TestData.C]}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/radioButton3"/>
 
-                <RadioButton
-                        android:text="@{viewModel.questionLiveData.getValue().variations[TestData.C]}"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/radioButton3"/>
+        </RadioGroup>
 
-            </RadioGroup>
+        <Button
+                android:text="@string/finish_test"
+                android:onClick="@{(View)-> viewModel.finishQuestion()}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/rgv_answers"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"/>
 
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

@@ -1,34 +1,31 @@
 package com.burlaka.vmpusher.sample.presentation
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProviders
 import com.burlaka.vmpusher.sample.R
+import com.burlaka.vmpusher.sample.databinding.SuccessFragmentBinding
+import com.burlaka.vmpusher.sample.presentation.base.BaseFragment
+import com.burlaka.vmpusher.sample.viewmodel.MainViewModel
 import com.burlaka.vmpusher.sample.viewmodel.SecureViewModel
 
 
-class SuccessFragment : Fragment() {
+class SuccessFragment(override val layoutId: Int = R.layout.success_fragment) : BaseFragment<SuccessFragmentBinding>() {
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        ViewModelProviders.of(activity!!)[MainViewModel::class.java].bindToView()
+        mViewDataBinding.lifecycleOwner = this
+    }
+
+    private fun MainViewModel.bindToView(): MainViewModel {
+        mViewDataBinding.viewModel = this
+        return this
+    }
 
     companion object {
         fun newInstance() = SuccessFragment()
     }
-
-    private lateinit var viewModel: SecureViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.success_fragment, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProviders.of(this).get(SecureViewModel::class.java)
-
-    }
-
 }

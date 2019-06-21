@@ -8,9 +8,8 @@ import com.burlaka.vmpusher.sample.presentation.base.BaseFragment
 import com.burlaka.vmpusher.sample.viewmodel.MainViewModel
 
 
-class QuestionFragment : BaseFragment<QuestionFragmentBinding>() {
-
-    override val layoutId: Int = R.layout.question_fragment
+class QuestionFragment(override val layoutId: Int = R.layout.question_fragment) :
+    BaseFragment<QuestionFragmentBinding>() {
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

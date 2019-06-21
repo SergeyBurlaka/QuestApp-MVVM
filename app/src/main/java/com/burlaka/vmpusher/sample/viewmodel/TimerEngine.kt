@@ -4,14 +4,9 @@ import io.reactivex.Flowable
 import io.reactivex.functions.BiFunction
 import java.util.concurrent.TimeUnit
 
-/**
- * @author Sergey
- * @since 06.02.2019
- */
-class TimerEngine() {
 
-
-    var awaitTimeInMillis: Int = 25
+class TimerEngine {
+    var awaitTimeInMillis: Int = 60
         private set
 
     fun getLockImpulses(updatePeriod: Long = 1_000L): Flowable<LockImpulse> {
@@ -33,5 +28,4 @@ class TimerEngine() {
             val timeCount: Int
         )
     }
-
 }

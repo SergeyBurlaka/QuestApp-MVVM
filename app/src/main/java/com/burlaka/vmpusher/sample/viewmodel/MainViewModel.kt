@@ -14,6 +14,7 @@ import com.burlaka.vmpusher.sample.viewmodel.MainViewModel.TestData.C
 import com.burlaka.vmpusher.sample.viewmodel.MainViewModel.TestData.questions
 import com.burlaka.vmpusherannotation.BindUiAction
 import com.burlaka.vmpusherannotation.BindUiListener
+import com.jellyworkz.processor.MainView.showFinishTestMainView
 import com.jellyworkz.processor.MainView.showFirstQuestionMainView
 import com.jellyworkz.processor.MainView.startClockMainView
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -25,69 +26,86 @@ class MainViewModel(private val timerEngine: TimerEngine) : PusherViewModel() {
 
     val questionLiveData: LiveData<TestData.Question> get() = _questionLiveData
     val timerLiveData: LiveData<String> get() = _timerLiveData
-    private var mCurrentAnswer = -1
+    var currentAnswer = -1
+        private set
+    val resultReportMessageLiveDta: LiveData<String> get() = _resultReportMessageLiveDta
+    private val _resultReportMessageLiveDta = MutableLiveData<String>()
 
     fun startTimer() {
-        disposable.dispose()
-        disposable =
-                timerEngine.getLockImpulses()
-                    .map { it.timeCount }
-                    .map { "$it" }
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .doOnSubscribe {
+        disposableTimerEngine.dispose()
+        disposableTimerEngine =
+            timerEngine.getLockImpulses()
+                .map { it.timeCount }
+                .map { "$it" }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe {
 
-                        startClockMainView() pushBy viewCommander
+                    startClockMainView() pushBy viewCommander
 
-                        showFirstQuestionMainView() pushBy viewCommander
+                    showFirstQuestionMainView() pushBy viewCommander
 
-                    }
-                    .subscribe({
-                        _timerLiveData.value = it
-                    }, {
-                        this@MainViewModel.logE("Failed: ${it.message}")
-                    })
+                }
+                .subscribe({ _timerLiveData.value = it }, { this@MainViewModel.logE("Failed: ${it.message}") })
 
     }
 
     fun onCheckedChanged(viewGroup: RadioGroup, id: Int) {
         when (id) {
             R.id.radioButton -> {
-                mCurrentAnswer = A
+                currentAnswer = A
                 this@MainViewModel.logD("A")
             }
 
             R.id.radioButton2 -> {
-                mCurrentAnswer = B
+                currentAnswer = B
                 this@MainViewModel.logD("B")
             }
 
             R.id.radioButton3 -> {
-                mCurrentAnswer = C
+                currentAnswer = C
                 this@MainViewModel.logD("C")
             }
         }
     }
 
-    companion object {
-        @BindUiListener
-        interface MainView : TaskExecutable {
-
-            @BindUiAction(actionId = 5)
-            fun startClock()
-
-            @BindUiAction(actionId = 1)
-            fun showFirstQuestion()
+    fun finishQuestion() {
+        disposableTimerEngine.dispose()
+        showFinishTestMainView() pushBy viewCommander
+        _resultReportMessageLiveDta.value = when (currentAnswer) {
+            A -> {
+                "Great job! You can became a real Android developer!"
+            }
+            B -> {
+                "Oh, sorry but you were so close!"
+            }
+            C -> {
+                "Failed!!"
+            }
+            else -> throw IllegalArgumentException()
         }
     }
 
+    @BindUiListener
+    interface MainView : TaskExecutable {
+
+        @BindUiAction(actionId = 5)
+        fun startClock()
+
+        @BindUiAction(actionId = 1)
+        fun showFirstQuestion()
+
+        @BindUiAction(actionId = 3)
+        fun showFinishTest()
+    }
+
     override fun onCleared() {
-        disposable.dispose()
+        disposableTimerEngine.dispose()
         super.onCleared()
     }
 
     private val _timerLiveData = MutableLiveData<String>()
-    private var disposable = Disposables.empty()
+    private var disposableTimerEngine = Disposables.empty()
 
     object TestData {
         data class Question(
