@@ -1,7 +1,7 @@
 # VmPusher module and "QuestApp" demo
 
 ## Let me show the simple demo ```"QuestApp"``` with usage ```Kotlin```, ```MVVM```, ```Databindg```, ```RxJava2``` together  with my personal created module ```VMPusher``` for the one thing! 
-## More easly ViewModel and View interaction like MVP style!
+## More easly ```ViewModel``` and ```View``` interaction like ```MVP``` style!
 
 ## Intro 
 
