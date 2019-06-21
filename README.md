@@ -1,19 +1,19 @@
 # QuestApp-MVVM
 
-How let me intruduce my Kotlin MVVM, Databindg , RxJava2 usage sample 
-together with my personal created modul VMPusher for more easly ViewModel and View 
+I want to intruduce my demo project with usage Kotlin MVVM, Databindg, RxJava2   
+together with my personal created module ```VMPusher``` for more easly ViewModel and View 
 interaction like in MVP style!
 
-To send execute action from view model to view (using Google Live Data under the hood ) with VmPusher will looks like: 
+To send execute action from View Model to view (using ```Google Live Data``` under the hood ) with ```VmPusher``` will looks like: 
 
 ```kotlin
   startClockMainView() pushBy viewCommander
 ```
-And that's all! In under the hood you use liveData But no need to write observe LiveData and add life circle owner boiler plate! 
-VmPusher do it self!
+And that's all!
+In under the hood you use ```LiveData```, but now no need to write ```observe``` method, create ```LiveData```, create ```MutableLiveData```, code to add ```Life Circle Owner``` to observe method and other boiler plate!
+```VmPusher``` do it self! Amazing!
 
-
-##Details
+## Details
 
 I have create module the [```vmtaskpusher```](https://github.com/SergeyBurlaka/QuestApp-MVVM/tree/feature/improve_code_gen/vmtaskpusher) 
 for more easly calling method on view. (Usage LiveData and Kotlin codogeneration under the hood)
