@@ -46,7 +46,11 @@ class MainViewModel(private val timerEngine: TimerEngine) : PusherViewModel() {
                     showFirstQuestionMainView() pushBy viewCommander
 
                 }
-                .subscribe({ _timerLiveData.value = it }, { this@MainViewModel.logE("Failed: ${it.message}") })
+                .subscribe({
+                    _timerLiveData.value = it
+                }, {
+                    this@MainViewModel.logE("Failed: ${it.message}")
+                })
 
     }
 

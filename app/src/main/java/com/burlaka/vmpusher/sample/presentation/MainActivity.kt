@@ -73,5 +73,4 @@ class MainActivity : BaseActivity<MainActivityBinding>(), MainViewModel.MainView
             R.drawable.anim_svg_timer
         )
     }
-
 }

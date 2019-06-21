@@ -20,11 +20,6 @@ abstract class BaseActivity<T : ViewDataBinding> :
     FragmentHost,
     TaskExecutable {
 
-    /**
-     * Performing dependency injection and data binding
-     * Note!!!
-     * Do not use [setContentView]
-     */
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewDataBinding = DataBindingUtil.setContentView(this@BaseActivity, layoutId())

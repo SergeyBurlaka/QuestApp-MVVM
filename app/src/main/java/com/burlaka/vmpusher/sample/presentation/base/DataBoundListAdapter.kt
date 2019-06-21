@@ -1,4 +1,4 @@
-package com.jellyworkz.universum.view.base
+package com.burlaka.vmpusher.sample.presentation.base
 
 
 import android.view.ViewGroup
@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.AsyncDifferConfig
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.burlaka.utils.executer.AppExecutors
-import com.burlaka.vmpusher.sample.presentation.base.DataBoundViewHolder
 
 /**
  * A generic RecyclerView restaurantsListAdapter that uses Data Binding & DiffUtil.
