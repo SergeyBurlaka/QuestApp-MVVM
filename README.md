@@ -94,12 +94,10 @@ class MainActivity : BaseActivity<MainActivityBinding>()
     companion object {
         @BindUiListener
         interface MainView : TaskExecutable {
-
+        
             @BindUiAction(actionId = 1)
-            fun startClock()
-
-            @BindUiAction(actionId = 2)
             fun showFirstQuestion()
+            
         }
     }
 ```
@@ -109,13 +107,11 @@ class MainActivity : BaseActivity<MainActivityBinding>()
 ```kotlin
 
  class MainActivity : BaseActivity<MainActivityBinding>(), MainViewModel.Companion.MainView{
-   override fun startClock() {
-    //...
-   }
-  
+ 
     override fun showFirstQuestion() {
       //..
     }
+    
  }
  
 ```
@@ -123,6 +119,7 @@ class MainActivity : BaseActivity<MainActivityBinding>()
 ## That's all ! Now just push you execute to view via ```ViewCommander```
 
 ```kotlin
+
       val viewCommander: ViewCommander = ViewCommander()
 
       showFirstQuestionMainView() pushBy viewCommander
