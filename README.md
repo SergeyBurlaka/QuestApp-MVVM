@@ -28,7 +28,7 @@ in ```Activity```:
 ## And that's all!!
 
 In under the hood you still use ```LiveData```, but now no need to write ```observe``` method, create ```LiveData```, create ```MutableLiveData```, code to add ```Life Circle Owner``` to observe method and other boiler plate!
-```VmPusher``` do it self! Amazing!
+```VmPusher``` do it self!
 
 # Details
 
